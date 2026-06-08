@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Universo SL | Apresentacao Interativa</title>
+  <style>
+    :root {
+      --ink: #26122d;
+      --plum: #531c57;
+      --wine: #84205c;
+      --pink: #f0067f;
+      --rose: #ff4f9a;
+      --coral: #ff6f61;
+      --sun: #ffd22e;
+      --green: #22a66a;
+      --amber: #f0a51a;
+      --red: #dc4257;
+      --cream: #fff8ed;
+      --paper: rgba(255, 250, 244, 0.88);
+      --line: rgba(83, 28, 87, 0.16);
+      --muted: #735f73;
+      --shadow: 0 24px 80px rgba(38, 18, 45, 0.20);
+      font-family: Inter, "Aptos", "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(120deg, rgba(255, 248, 237, 0.94), rgba(255, 248, 237, 0.68)),
+        url("./salon-line-style-bg.png") center / cover fixed;
+    }
+
+    button, select { font: inherit; }
+
+    .stage {
+      min-height: 100vh;
+      padding: 28px;
+    }
+
+    .dashboard {
+      max-width: 1320px;
+      min-height: calc(100vh - 56px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 310px minmax(0, 1fr);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.56);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    aside {
+      position: relative;
+      padding: 28px 24px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 20% 12%, rgba(255, 210, 46, 0.9), transparent 24%),
+        radial-gradient(circle at 92% 18%, rgba(255, 79, 154, 0.9), transparent 30%),
+        linear-gradient(165deg, #2b1235 0%, #6d1b61 48%, #f0067f 100%);
+    }
+
+    .brand-mark {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, var(--sun), var(--rose) 58%, var(--plum));
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+      margin-bottom: 22px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 24px;
+      padding: 0 10px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.13);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--sun);
+    }
+
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 260px;
+      margin: 0 0 28px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 15px;
+      line-height: 1.42;
+    }
+
+    .nav {
+      display: grid;
+      gap: 10px;
+      margin: 26px 0 24px;
+    }
+
+    .tab {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      color: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      text-align: left;
+      padding: 0 14px;
+      transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .tab:hover { transform: translateX(2px); }
+
+    .tab.active {
+      color: var(--ink);
+      background: var(--sun);
+      border-color: transparent;
+      font-weight: 800;
+    }
+
+    .side-note {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    main {
+      min-width: 0;
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 248, 237, 0.76));
+    }
+
+    .topbar {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .title-block h2 {
+      margin: 0;
+      font-size: clamp(25px, 3vw, 38px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .title-block p {
+      margin: 8px 0 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .status-pill {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      min-width: 150px;
+      min-height: 52px;
+      padding: 8px 16px;
+      border-radius: 18px;
+      color: var(--ink);
+      background: linear-gradient(135deg, var(--sun), #fff2a5);
+      font-weight: 900;
+      box-shadow: 0 12px 28px rgba(240, 165, 26, 0.20);
+    }
+
+    .panel {
+      display: none;
+      animation: show 180ms ease;
+    }
+
+    .panel.active { display: block; }
+
+    @keyframes show {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: 0 12px 34px rgba(83, 28, 87, 0.08);
+    }
+
+    .kpi {
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .kpi .value {
+      display: block;
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 950;
+      color: var(--plum);
+    }
+
+    .kpi .label {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .big-card {
+      padding: 22px;
+    }
+
+    .big-card h3, .phase-card h3 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .progress-wrap {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+    }
+
+    .donut {
+      width: 176px;
+      height: 176px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--green) 0 57%, var(--amber) 57% 88%, var(--red) 88% 92%, #d9d2d7 92% 100%);
+      box-shadow: inset 0 0 0 18px rgba(255,255,255,0.8);
+    }
+
+    .donut span {
+      width: 112px;
+      height: 112px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--cream);
+      color: var(--plum);
+      font-size: 30px;
+      font-weight: 950;
+    }
+
+    .legend {
+      display: grid;
+      gap: 10px;
+    }
+
+    .legend-item {
+      display: grid;
+      grid-template-columns: 12px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    .dot.green { background: var(--green); }
+    .dot.amber { background: var(--amber); }
+    .dot.red { background: var(--red); }
+    .dot.gray { background: #a79da8; }
+
+    .focus-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .focus-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(83, 28, 87, 0.1);
+    }
+
+    .focus-index {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--pink);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .focus-item b {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .focus-item span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.38;
+    }
+
+    .timeline-shell {
+      padding: 22px;
+      min-height: 500px;
+    }
+
+    .timeline-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 18px;
+    }
+
+    .chip {
+      min-height: 36px;
+      border: 1px solid rgba(83, 28, 87, 0.16);
+      border-radius: 999px;
+      padding: 0 14px;
+      background: rgba(255,255,255,0.62);
+      color: var(--plum);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .chip.active {
+      border-color: transparent;
+      background: var(--pink);
+      color: #fff;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(112px, 1fr));
+      gap: 8px;
+      padding: 44px 0 12px;
+      overflow-x: auto;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 78px;
+      height: 5px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--wine), var(--pink), var(--sun), var(--green));
+    }
+
+    .milestone {
+      position: relative;
+      min-width: 126px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      padding: 0 4px;
+      text-align: center;
+    }
+
+    .milestone::before {
+      content: "";
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin: 17px auto 16px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 6px solid var(--pink);
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.74);
+    }
+
+    .milestone.go::before { border-color: var(--green); }
+    .milestone.test::before { border-color: var(--pink); width: 28px; height: 28px; margin-top: 14px; }
+    .milestone.active .milestone-box {
+      border-color: var(--pink);
+      background: #fff;
+      transform: translateY(-3px);
+    }
+
+    .milestone-date {
+      display: block;
+      font-size: 13px;
+      font-weight: 950;
+      color: var(--pink);
+      white-space: nowrap;
+    }
+
+    .milestone-title {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .milestone-box {
+      min-height: 92px;
+      padding: 12px 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(83, 28, 87, 0.12);
+      background: rgba(255,255,255,0.58);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .detail-card {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 244, 249, 0.9));
+      border: 1px solid rgba(240, 6, 127, 0.16);
+    }
+
+    .detail-card h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .detail-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .phase-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: 16px;
+    }
+
+    .phase-card {
+      padding: 20px;
+    }
+
+    .lane {
+      display: grid;
+      gap: 12px;
+    }
+
+    .lane-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(83, 28, 87, 0.1);
+    }
+
+    .lane-tag {
+      display: grid;
+      place-items: center;
+      min-height: 42px;
+      border-radius: 14px;
+      background: var(--plum);
+      color: #fff;
+      font-weight: 900;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .lane-item b { display: block; margin-bottom: 5px; }
+    .lane-item span { color: var(--muted); font-size: 13px; line-height: 1.38; }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    select {
+      min-height: 38px;
+      padding: 0 12px;
+      border: 1px solid rgba(83, 28, 87, 0.16);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.72);
+      color: var(--ink);
+    }
+
+    .backlog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      max-height: 510px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .item-card {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.68);
+      border: 1px solid rgba(83, 28, 87, 0.1);
+    }
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: start;
+      margin-bottom: 8px;
+    }
+
+    .item-card b {
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 11px;
+      font-weight: 900;
+      color: #fff;
+      background: var(--pink);
+    }
+
+    .badge.done { background: var(--green); }
+    .badge.partial { background: var(--amber); color: var(--ink); }
+    .badge.open { background: var(--red); }
+    .badge.plan { background: var(--plum); }
+
+    .item-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.36;
+    }
+
+    @media (max-width: 980px) {
+      .stage { padding: 12px; }
+      .dashboard {
+        grid-template-columns: 1fr;
+        border-radius: 20px;
+      }
+      aside {
+        min-height: auto;
+        padding-bottom: 22px;
+      }
+      .side-note {
+        position: static;
+        margin-top: 18px;
+      }
+      .nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .topbar, .overview-grid, .phase-layout, .progress-wrap {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+      .kpis, .backlog-grid {
+        grid-template-columns: 1fr;
+      }
+      .timeline {
+        grid-template-columns: repeat(6, 150px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="dashboard">
+      <aside>
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="kicker">Nosso projeto</div>
+        <h1>Intranet Universo SL</h1>
+        <p class="lead">Apresentação interativa do status, prazos e próximos passos da nossa frente. Conteúdo focado somente no projeto da intranet.</p>
+
+        <nav class="nav" aria-label="Seções da apresentação">
+          <button class="tab active" data-tab="overview">Visão geral</button>
+          <button class="tab" data-tab="timeline">Timeline</button>
+          <button class="tab" data-tab="phase2">Fase 2</button>
+          <button class="tab" data-tab="backlog">Backlog filtrável</button>
+        </nav>
+
+        <div class="side-note">
+          <b>Mensagem para alinhamento:</b><br />
+          estamos adiantados, mas o prazo continua sendo o norte: liberar para testes em <b>18/jun</b> e sustentar o go live em <b>26/jun</b>.
+        </div>
+      </aside>
+
+      <main>
+        <section class="panel active" id="overview">
+          <div class="topbar">
+            <div class="title-block">
+              <h2>Estamos adiantados; agora o ciclo é de fechamento e validação.</h2>
+              <p>A base já está no ar. O foco até 18/jun é transformar o que está parcial em versão testável, sem puxar conteúdo de outras agendas.</p>
+            </div>
+            <div class="status-pill">On track</div>
+          </div>
+
+          <div class="kpis">
+            <div class="card kpi"><span class="value">51</span><span class="label">itens mapeados na matriz</span></div>
+            <div class="card kpi"><span class="value">57%</span><span class="label">feito em produção</span></div>
+            <div class="card kpi"><span class="value">18/jun</span><span class="label">entrega para testes</span></div>
+            <div class="card kpi"><span class="value">26/jun</span><span class="label">go live planejado</span></div>
+          </div>
+
+          <div class="overview-grid">
+            <div class="card big-card">
+              <h3>Leitura executiva da matriz</h3>
+              <div class="progress-wrap">
+                <div class="donut"><span>57%</span></div>
+                <div class="legend">
+                  <div class="legend-item"><i class="dot green"></i><span>Feito em produção</span><b>29 itens</b></div>
+                  <div class="legend-item"><i class="dot amber"></i><span>Parcial por credencial/integração</span><b>16 itens</b></div>
+                  <div class="legend-item"><i class="dot red"></i><span>Em aberto</span><b>2 itens</b></div>
+                  <div class="legend-item"><i class="dot gray"></i><span>Descartado de forma controlada</span><b>4 itens</b></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card big-card">
+              <h3>O que precisa ficar visível</h3>
+              <div class="focus-list">
+                <div class="focus-item"><div class="focus-index">1</div><div><b>Prazo batendo</b><span>O plano mostra entrega para testes em 18/jun e go live em 26/jun como marcos centrais.</span></div></div>
+                <div class="focus-item"><div class="focus-index">2</div><div><b>Projeto adiantado</b><span>Várias entregas V2/V3 já foram antecipadas; o risco não é volume, é dependência externa.</span></div></div>
+                <div class="focus-item"><div class="focus-index">3</div><div><b>Fase 2 organizada</b><span>Jandira, integrações finas, dados RH/Protheus, VTEX e canais entram como evolução planejada.</span></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="timeline">
+          <div class="topbar">
+            <div class="title-block">
+              <h2>Timeline do nosso projeto</h2>
+              <p>Clique nos marcos para ver o papel de cada etapa. A agenda exibida aqui é só da Intranet Universo SL.</p>
+            </div>
+            <div class="status-pill">Go live 26/jun</div>
+          </div>
+
+          <div class="card timeline-shell">
+            <div class="timeline-controls" id="timelineControls"></div>
+            <div class="timeline" id="timelineRail"></div>
+            <div class="detail-card" id="milestoneDetail"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="phase2">
+          <div class="topbar">
+            <div class="title-block">
+              <h2>Fase 2 deixa claro o que vem depois do go live.</h2>
+              <p>O projeto está bem encaminhado. A Fase 2 não precisa competir com o lançamento: ela organiza Jandira e integrações que dependem de decisão ou credencial.</p>
+            </div>
+            <div class="status-pill">Fase 2 planejada</div>
+          </div>
+
+          <div class="phase-layout">
+            <div class="card phase-card">
+              <h3>Esteira da Fase 2</h3>
+              <div class="lane">
+                <div class="lane-item"><div class="lane-tag">Jandira</div><div><b>Versão simplificada da unidade</b><span>Entra como frente planejada após o recorte principal. A unidade existe no modelo; falta iniciar a adaptação.</span></div></div>
+                <div class="lane-item"><div class="lane-tag">RH</div><div><b>Protheus ou CSV oficial</b><span>Base confiável para áreas, cargos, aniversários e segmentação fina.</span></div></div>
+                <div class="lane-item"><div class="lane-tag">Canais</div><div><b>Responsys, WhatsApp, push e digest</b><span>Adapters prontos; a ativação depende de contrato, tokens, templates e cron.</span></div></div>
+                <div class="lane-item"><div class="lane-tag">Vitrine</div><div><b>VTEX/e-commerce e cupom único</b><span>Kits reais já aparecem; mecânica transacional fica para refinamento com o parceiro.</span></div></div>
+                <div class="lane-item"><div class="lane-tag">IA</div><div><b>LLM real + moderação editorial</b><span>Resumo e chat podem sair de stub para produção com chave LLM, cron e revisão.</span></div></div>
+              </div>
+            </div>
+
+            <div class="card phase-card">
+              <h3>Como contar a história</h3>
+              <div class="focus-list">
+                <div class="focus-item"><div class="focus-index">A</div><div><b>Agora</b><span>Fechar versão candidata e liberar para teste em 18/jun.</span></div></div>
+                <div class="focus-item"><div class="focus-index">B</div><div><b>Go live</b><span>Garantir aceite, monitoramento e publicação em 26/jun.</span></div></div>
+                <div class="focus-item"><div class="focus-index">C</div><div><b>Depois</b><span>Entram Jandira e integrações que não bloqueiam a narrativa principal.</span></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="backlog">
+          <div class="topbar">
+            <div class="title-block">
+              <h2>Backlog do nosso projeto, filtrável por fase e status.</h2>
+              <p>Use os filtros para mostrar só o recorte que precisa entrar na conversa.</p>
+            </div>
+            <div class="status-pill"><span id="visibleCount">0</span> itens</div>
+          </div>
+
+          <div class="filters">
+            <select id="phaseFilter" aria-label="Filtrar por fase">
+              <option value="all">Todas as fases</option>
+              <option value="Fase 1">Fase 1</option>
+              <option value="V1.1">V1.1</option>
+              <option value="V2">V2</option>
+              <option value="V3">V3</option>
+              <option value="Bônus">Bônus</option>
+            </select>
+            <select id="statusFilter" aria-label="Filtrar por status">
+              <option value="all">Todos os status</option>
+              <option value="Concluído">Concluído</option>
+              <option value="Em andamento">Em andamento</option>
+              <option value="A iniciar">A iniciar</option>
+              <option value="Descartado">Descartado</option>
+            </select>
+          </div>
+          <div class="backlog-grid" id="backlogGrid"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const milestones = [
+      { key: "base", date: "08/jun", title: "Base batida", detail: "Matriz consolidada: 51 itens, 57% feito em produção e uma base técnica já no ar.", type: "done" },
+      { key: "setup", date: "08-10/jun", title: "Fechar recorte", detail: "Organizar o que entra na versão candidata e formalizar que Cloudflare Access foi substituído por BetterAuth.", type: "plan" },
+      { key: "build", date: "11-14/jun", title: "Ativar dependências", detail: "Credenciais Google, canais, cron, LLM, Protheus/CSV, VTEX e VAPID conforme disponibilidade.", type: "work" },
+      { key: "hardening", date: "15-17/jun", title: "Hardening", detail: "Smoke tests, revisão de permissões, responsividade e correção de regressões antes da entrega.", type: "work" },
+      { key: "test", date: "18/jun", title: "Entrega para testes", detail: "Versão candidata liberada para validação dos usuários-chave. Este é o marco mais importante antes do go live.", type: "test" },
+      { key: "golive", date: "26/jun", title: "Go live", detail: "Publicação monitorada após aceite. Fase 2 segue com Jandira e integrações que não precisam bloquear o lançamento.", type: "go" },
+    ];
+
+    const backlog = [
+      { id: 1, module: "Fundação", phase: "Fase 1", status: "Concluído", feature: "Banco de dados e storage", note: "Neon em produção, R2 provisionado e upload funcionando." },
+      { id: 5, module: "Autenticação", phase: "Fase 1", status: "Em andamento", feature: "Login admin Google SSO + RBAC", note: "RBAC em produção; Google SSO depende de credenciais OAuth." },
+      { id: 7, module: "Home", phase: "Fase 1", status: "Concluído", feature: "Carrossel de banners + slots", note: "Hero, blocos e admin com imagens reais." },
+      { id: 10, module: "Acontece", phase: "Fase 1", status: "Concluído", feature: "Lista, filtro e detalhe de notícias", note: "Conteúdo editorial e detalhe Markdown funcionando." },
+      { id: 13, module: "Pessoas", phase: "Fase 1", status: "Concluído", feature: "Nosso Time - diretório e perfil", note: "Colaboradores reais importados, com fotos re-hospedadas." },
+      { id: 15, module: "CMS", phase: "Fase 1", status: "Concluído", feature: "CMS de conteúdo", note: "CRUD completo, ocultar sem deletar e upload R2." },
+      { id: 17, module: "Descoberta", phase: "V1.1", status: "Concluído", feature: "Busca global multi-entidade", note: "Antecipado no header e página de busca." },
+      { id: 19, module: "Acontece", phase: "V1.1", status: "Em andamento", feature: "Segmentação de conteúdo por área", note: "Filtro por categoria ok; segmentação fina depende de base RH/Protheus." },
+      { id: 20, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "Responsys", note: "Adapter pronto; falta contrato e credencial." },
+      { id: 21, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "WhatsApp Business", note: "Adapter e opt-in prontos; falta BSP/token e templates Meta." },
+      { id: 25, module: "Resumo IA", phase: "V2", status: "Em andamento", feature: "Agente IA backend", note: "RAG pronto em stub; falta chave LLM." },
+      { id: 28, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Seletor de produtos VTEX", note: "Kits reais populados; transacional depende de VTEX." },
+      { id: 33, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Push notification de novo kit", note: "Web Push pronto; falta VAPID e feature flag." },
+      { id: 39, module: "RH", phase: "V2", status: "Em andamento", feature: "Protheus/RH ou import planilha", note: "CSV ok como fallback; adapter Protheus depende de credencial." },
+      { id: 41, module: "Produto", phase: "V2", status: "A iniciar", feature: "Versão Jandira simplificada", note: "Planejada para Fase 2; unidade existe no modelo, adaptação não iniciada." },
+      { id: 44, module: "Resumo IA", phase: "V3", status: "Concluído", feature: "Assistente IA corporativo", note: "Lina flutuante antecipada; real com chave LLM." },
+      { id: 46, module: "Fundação", phase: "V3", status: "Concluído", feature: "Dark mode", note: "Claro, escuro e sistema antecipados." },
+      { id: 51, module: "Acontece", phase: "Bônus", status: "Concluído", feature: "Sync automático do blog", note: "40 posts sincronizados com tag Blog." },
+    ];
+
+    const panels = document.querySelectorAll(".panel");
+    const tabs = document.querySelectorAll(".tab");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((item) => item.classList.remove("active"));
+        panels.forEach((panel) => panel.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.tab).classList.add("active");
+      });
+    });
+
+    const timelineRail = document.getElementById("timelineRail");
+    const timelineControls = document.getElementById("timelineControls");
+    const detail = document.getElementById("milestoneDetail");
+
+    function renderMilestone(key = "test") {
+      timelineRail.innerHTML = "";
+      timelineControls.innerHTML = "";
+      milestones.forEach((item) => {
+        const chip = document.createElement("button");
+        chip.className = "chip" + (item.key === key ? " active" : "");
+        chip.textContent = item.date;
+        chip.addEventListener("click", () => renderMilestone(item.key));
+        timelineControls.appendChild(chip);
+
+        const button = document.createElement("button");
+        button.className = "milestone " + item.type + (item.key === key ? " active" : "");
+        button.innerHTML = `<span class="milestone-box"><span class="milestone-date">${item.date}</span><span class="milestone-title">${item.title}</span></span>`;
+        button.addEventListener("click", () => renderMilestone(item.key));
+        timelineRail.appendChild(button);
+      });
+
+      const selected = milestones.find((item) => item.key === key) || milestones[0];
+      detail.innerHTML = `<h3>${selected.date} · ${selected.title}</h3><p>${selected.detail}</p>`;
+    }
+
+    const phaseFilter = document.getElementById("phaseFilter");
+    const statusFilter = document.getElementById("statusFilter");
+    const grid = document.getElementById("backlogGrid");
+    const visibleCount = document.getElementById("visibleCount");
+
+    function statusClass(status) {
+      if (status === "Concluído") return "done";
+      if (status === "Em andamento") return "partial";
+      if (status === "A iniciar") return "open";
+      return "plan";
+    }
+
+    function renderBacklog() {
+      const phase = phaseFilter.value;
+      const status = statusFilter.value;
+      const rows = backlog.filter((item) => (phase === "all" || item.phase === phase) && (status === "all" || item.status === status));
+      visibleCount.textContent = rows.length;
+      grid.innerHTML = rows.map((item) => `
+        <article class="item-card">
+          <div class="item-top">
+            <b>#${item.id} · ${item.module}<br>${item.feature}</b>
+            <span class="badge ${statusClass(item.status)}">${item.status}</span>
+          </div>
+          <p><b>${item.phase}</b> · ${item.note}</p>
+        </article>
+      `).join("");
+    }
+
+    phaseFilter.addEventListener("change", renderBacklog);
+    statusFilter.addEventListener("change", renderBacklog);
+    renderMilestone();
+    renderBacklog();
+  </script>
+</body>
+</html>
