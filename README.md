@@ -5,8 +5,9 @@ Apresentacao interativa do projeto Intranet Universo SL.
 Conteudo principal:
 - status atual da matriz;
 - timeline do ciclo de desenvolvimento;
-- entrega para testes em 18/jun;
-- go live planejado em 26/jun;
-- Fase 2 com Jandira e integracoes.
+- Entrega do Projeto em 19/06;
+- Possivel Inauguracao em 26/06;
+- matriz atualizada com 52 itens;
+- Fase 2 com Jandira, Oracle, Clarity e integracoes.
 
 Arquivo principal: `index.html`.
