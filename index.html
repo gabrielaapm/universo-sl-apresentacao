@@ -621,6 +621,98 @@
         grid-template-columns: repeat(4, 180px);
       }
     }
+
+    body.export-pdf {
+      background: #fff8ed !important;
+    }
+
+    body.export-pdf .stage {
+      padding: 0;
+      min-height: auto;
+    }
+
+    body.export-pdf .dashboard {
+      display: block;
+      max-width: none;
+      min-height: auto;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      backdrop-filter: none;
+    }
+
+    body.export-pdf aside {
+      position: static;
+      border-radius: 0;
+      page-break-after: always;
+    }
+
+    body.export-pdf aside .nav,
+    body.export-pdf .tab,
+    body.export-pdf .timeline-controls,
+    body.export-pdf .chip,
+    body.export-pdf .filters {
+      display: none !important;
+    }
+
+    body.export-pdf .side-note {
+      position: static;
+      margin-top: 18px;
+    }
+
+    body.export-pdf main {
+      padding: 0;
+      background: transparent;
+    }
+
+    body.export-pdf .panel {
+      display: block !important;
+      animation: none;
+      page-break-before: always;
+      padding: 24px 20px 32px;
+    }
+
+    body.export-pdf #overview {
+      page-break-before: avoid;
+    }
+
+    body.export-pdf .backlog-grid {
+      max-height: none !important;
+      overflow: visible !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    body.export-pdf .timeline-shell {
+      min-height: auto;
+    }
+
+    body.export-pdf .timeline {
+      overflow: visible;
+      padding-bottom: 24px;
+    }
+
+    body.export-pdf .milestone-all-details {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    body.export-pdf .export-section-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 12px;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      background: var(--plum);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
   </style>
 </head>
 <body>
@@ -630,18 +722,18 @@
         <div class="brand-mark" aria-hidden="true"></div>
         <div class="kicker">Projeto 02</div>
         <h1>Projeto Intranet Salon Line</h1>
-        <p class="lead">Desenvolvimento e implantação do novo portal de intranet corporativa. Conteúdo focado somente na nossa frente.</p>
+        <p class="lead">Desenvolvimento e implantação do novo portal de intranet corporativa. Panorama do que foi entregue e dos próximos passos do projeto.</p>
 
         <nav class="nav" aria-label="Seções da apresentação">
           <button class="tab active" data-tab="overview">Visão geral</button>
           <button class="tab" data-tab="timeline">Timeline</button>
           <button class="tab" data-tab="phase2">Fase 2</button>
-          <button class="tab" data-tab="backlog">Backlog filtrável</button>
+          <button class="tab" data-tab="backlog">Matriz de funcionalidades</button>
         </nav>
 
         <div class="side-note">
-          <b>Mensagem para alinhamento:</b><br />
-          estamos adiantados, mas o prazo continua sendo o norte: <b>Testes cliente em 18/06</b> e <b>Go-live em 21/06</b>.
+          <b>Resumo do momento:</b><br />
+          o projeto segue o cronograma combinado, com foco em <b>testes com o cliente em 18/06</b> e <b>go-live em 21/06</b>.
         </div>
       </aside>
 
@@ -649,10 +741,10 @@
         <section class="panel active" id="overview">
           <div class="topbar">
             <div class="title-block">
-              <h2>Estamos adiantados; agora o ciclo é de fechamento e validação.</h2>
-              <p>O protótipo inicial tinha cerca de 10 funcionalidades. A matriz atual já mapeia 52 itens, com 29 em produção. O foco até 18/06 é liberar a plataforma para os testes de usuário do cliente.</p>
+              <h2>O projeto evoluiu com solidez; agora entramos na etapa de fechamento e validação.</h2>
+              <p>O protótipo inicial tinha cerca de 10 funcionalidades. A matriz atual reúne 52 itens, com 29 já em produção. Até 18/06, o foco é disponibilizar a plataforma para os testes com o cliente.</p>
             </div>
-            <div class="status-pill">On track</div>
+            <div class="status-pill">Dentro do prazo</div>
           </div>
 
           <div class="kpis">
@@ -671,7 +763,7 @@
                   <div class="legend-item"><i class="dot green"></i><span>Feito em produção</span><b>29 itens</b></div>
                   <div class="legend-item"><i class="dot amber"></i><span>Parcial por credencial/integração</span><b>16 itens</b></div>
                   <div class="legend-item"><i class="dot red"></i><span>Em aberto / a iniciar</span><b>2 itens</b></div>
-                  <div class="legend-item"><i class="dot gray"></i><span>Descartado/substituído de forma controlada</span><b>5 itens</b></div>
+                  <div class="legend-item"><i class="dot gray"></i><span>Em análise ou substituído de forma controlada</span><b>5 itens</b></div>
                 </div>
               </div>
             </div>
@@ -680,7 +772,7 @@
               <h3>O que precisa ficar visível</h3>
               <div class="focus-list">
                 <div class="focus-item"><div class="focus-index">1</div><div><b>Prazo batendo</b><span>O plano mostra Agenda com Negócio, Início do Desenvolvimento, Liberação para testes e Go-live nos marcos corretos.</span></div></div>
-                <div class="focus-item"><div class="focus-index">2</div><div><b>Projeto adiantado</b><span>Saímos de um protótipo de referência para uma plataforma com banco, storage, auth, CMS, dados reais e 29 entregas em produção.</span></div></div>
+                <div class="focus-item"><div class="focus-index">2</div><div><b>Evolução do escopo</b><span>Partimos de um protótipo de referência para uma plataforma com banco de dados, armazenamento, autenticação, CMS, dados reais e 29 entregas em produção.</span></div></div>
                 <div class="focus-item"><div class="focus-index">3</div><div><b>Fase 2 organizada</b><span>Jandira, busca semântica, alertas, Oracle, Clarity e integrações finas entram como evolução planejada.</span></div></div>
               </div>
             </div>
@@ -690,8 +782,8 @@
         <section class="panel" id="timeline">
           <div class="topbar">
             <div class="title-block">
-              <h2>Timeline do nosso projeto</h2>
-              <p>Clique nos marcos para ver o papel de cada etapa. A agenda exibida aqui é só do Projeto Intranet Salon Line.</p>
+              <h2>Timeline do projeto</h2>
+              <p>Clique nos marcos para ver o papel de cada etapa no cronograma do Projeto Intranet Salon Line.</p>
             </div>
             <div class="status-pill">Go-live 21/06</div>
           </div>
@@ -707,7 +799,7 @@
           <div class="topbar">
             <div class="title-block">
               <h2>Fase 2 deixa claro o que vem depois do go live.</h2>
-              <p>O projeto está bem encaminhado. A Fase 2 não precisa competir com o lançamento: ela organiza Jandira, busca semântica, alertas, Clarity e integrações que dependem de decisão ou credencial.</p>
+              <p>A Fase 2 está organizada para depois do lançamento: reúne Jandira, busca semântica, alertas, Clarity e integrações que dependem de decisão ou credencial do cliente.</p>
             </div>
             <div class="status-pill">Fase 2 planejada</div>
           </div>
@@ -719,9 +811,9 @@
                 <div class="lane-item"><div class="lane-tag">Jandira</div><div><b>Versão simplificada da unidade</b><span>Entra como Fase 2. A unidade existe no modelo; falta iniciar a adaptação para o recorte da operação.</span></div></div>
                 <div class="lane-item"><div class="lane-tag">Busca</div><div><b>Busca semântica e alertas proativos</b><span>Fica como evolução da IA para pós-lançamento, com alertas por área e uso mais avançado do conteúdo.</span></div></div>
                 <div class="lane-item"><div class="lane-tag">RH</div><div><b>Protheus ou CSV oficial</b><span>Base confiável para áreas, cargos, aniversários e segmentação fina.</span></div></div>
-                <div class="lane-item"><div class="lane-tag">Canais</div><div><b>Responsys, WhatsApp, push e digest</b><span>Adapters prontos; a ativação depende de contrato, tokens, templates e cron.</span></div></div>
+                <div class="lane-item"><div class="lane-tag">Canais</div><div><b>Responsys, WhatsApp, push e digest</b><span>Conectores preparados; a ativação depende de contrato, credenciais, templates e agendamento.</span></div></div>
                 <div class="lane-item"><div class="lane-tag">Vitrine</div><div><b>Oracle/e-commerce e cupom único</b><span>Kits reais já aparecem; mecânica transacional fica para refinamento com o parceiro.</span></div></div>
-                <div class="lane-item"><div class="lane-tag">IA</div><div><b>LLM real + moderação editorial</b><span>Resumo e chat podem sair de stub para produção com chave LLM, cron e revisão.</span></div></div>
+                <div class="lane-item"><div class="lane-tag">IA</div><div><b>Inteligência artificial em produção</b><span>Resumo e chat passam à operação completa após configuração da chave de IA, agendamento e revisão editorial.</span></div></div>
                 <div class="lane-item"><div class="lane-tag">Clarity</div><div><b>Monitoramento de navegação</b><span>Novo item de bônus para mapear navegação e engajamento do usuário.</span></div></div>
               </div>
             </div>
@@ -740,8 +832,8 @@
         <section class="panel" id="backlog">
           <div class="topbar">
             <div class="title-block">
-              <h2>Backlog do nosso projeto, filtrável por fase e status.</h2>
-              <p>Use os filtros para mostrar só o recorte que precisa entrar na conversa.</p>
+              <h2>Matriz de funcionalidades do projeto</h2>
+              <p>Consulte os 52 itens por fase ou status para acompanhar o andamento de cada entrega.</p>
             </div>
             <div class="status-pill"><span id="visibleCount">0</span> itens</div>
           </div>
@@ -754,14 +846,14 @@
               <option value="V2">V2</option>
               <option value="V3">V3</option>
               <option value="Bônus">Bônus</option>
-              <option value="Descartado">Descartado</option>
+              <option value="Em análise">Em análise</option>
             </select>
             <select id="statusFilter" aria-label="Filtrar por status">
               <option value="all">Todos os status</option>
               <option value="Concluído">Concluído</option>
               <option value="Em andamento">Em andamento</option>
               <option value="A iniciar">A iniciar</option>
-              <option value="Descartado">Descartado</option>
+              <option value="Em análise">Em análise</option>
             </select>
           </div>
           <div class="backlog-grid" id="backlogGrid"></div>
@@ -780,9 +872,9 @@
 
     const backlog = [
       { id: 1, module: "Fundação", phase: "Fase 1", status: "Concluído", feature: "Banco de dados e storage", note: "Neon em produção + R2 provisionado; upload de mídia e imagens reais funcionando." },
-      { id: 2, module: "Fundação", phase: "Fase 1", status: "Descartado", feature: "Acesso sem login restrito à rede", note: "Substituído por login obrigatório (BetterAuth) — decisão de arquitetura." },
+      { id: 2, module: "Fundação", phase: "Fase 1", status: "Em análise", feature: "Acesso sem login restrito à rede", note: "Em avaliação: substituído por login obrigatório — decisão de arquitetura." },
       { id: 3, module: "Fundação", phase: "Fase 1", status: "Concluído", feature: "Feature flags e health endpoints", note: "13 feature flags + endpoints /api/health/*." },
-      { id: 4, module: "Fundação", phase: "Fase 1", status: "Concluído", feature: "Testes E2E e responsividade", note: "Playwright E2E + 101 testes unit + CI; mobile 375px sem overflow." },
+      { id: 4, module: "Fundação", phase: "Fase 1", status: "Concluído", feature: "Testes E2E e responsividade", note: "Testes automatizados ponta a ponta + 101 testes + integração contínua; responsivo a partir de 375px." },
       { id: 5, module: "Autenticação", phase: "Fase 1", status: "Em andamento", feature: "Login admin Google SSO + RBAC", note: "RBAC em produção; Google SSO depende de credencial OAuth do cliente." },
       { id: 6, module: "Autenticação", phase: "Fase 1", status: "Concluído", feature: "Gestão de usuários administradores", note: "/admin/usuarios — CRUD completo." },
       { id: 7, module: "Home", phase: "Fase 1", status: "Concluído", feature: "Carrossel de banners + slots posicionáveis", note: "Hero + blocos (slots 1–6) + admin, com imagens reais." },
@@ -795,40 +887,40 @@
       { id: 14, module: "Vagas", phase: "Fase 1", status: "Concluído", feature: "Vagas internas com link Solides", note: "/vagas + admin + 12 vagas + link Solides." },
       { id: 15, module: "CMS", phase: "Fase 1", status: "Concluído", feature: "CMS — banners, notícias, agenda e vagas", note: "CRUD completo + ocultar sem deletar + upload R2." },
       { id: 16, module: "CMS", phase: "Fase 1", status: "Concluído", feature: "CMS — atalhos, aniversariantes (CSV) e pop-up", note: "Import CSV + atalhos por área + config do pop-up." },
-      { id: 17, module: "Descoberta", phase: "V1.1", status: "Concluído", feature: "Busca global multi-entidade", note: "Antecipado — header + /busca segmentado (matéria/pessoa/atalho/vaga)." },
-      { id: 18, module: "Pessoas", phase: "V1.1", status: "Concluído", feature: "Widget de novos colaboradores", note: "Antecipado — NewMembersWidget na Home." },
+      { id: 17, module: "Descoberta", phase: "V1.1", status: "Concluído", feature: "Busca global multi-entidade", note: "Já disponível — header + /busca segmentado (matéria/pessoa/atalho/vaga)." },
+      { id: 18, module: "Pessoas", phase: "V1.1", status: "Concluído", feature: "Widget de novos colaboradores", note: "Já disponível — destaque de novos colaboradores na Home." },
       { id: 19, module: "Acontece", phase: "V1.1", status: "Em andamento", feature: "Segmentação de conteúdo por área", note: "Filtro por categoria ok; por área do colaborador depende de Protheus." },
-      { id: 20, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "E-mail transacional (Responsys)", note: "Adapter mailer pronto; falta contrato + credencial Responsys." },
-      { id: 21, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "WhatsApp Business", note: "Adapter Meta Cloud + opt-in; falta BSP/token + templates Meta." },
-      { id: 22, module: "Newsletter", phase: "V2", status: "Concluído", feature: "Cadastro e preferências de comunicação", note: "Antecipado — canais + frequência + categorias." },
-      { id: 23, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "Digest semanal automático", note: "Cron + hook prontos; falta CRON_SECRET + Vercel Cron + canal." },
-      { id: 24, module: "Resumo IA", phase: "V2", status: "Concluído", feature: "Widget 'Resumo da Semana' + chat IA", note: "Antecipado — widget + chat inline (real com LLM key)." },
-      { id: 25, module: "Resumo IA", phase: "V2", status: "Em andamento", feature: "Agente de sumarização (backend)", note: "Lib IA + RAG prontos em stub; falta API key LLM." },
-      { id: 26, module: "Resumo IA", phase: "V2", status: "Em andamento", feature: "Job agendado + moderação editorial", note: "Revisão em /admin/resumo-ia; depende de CRON_SECRET + LLM." },
+      { id: 20, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "E-mail transacional (Responsys)", note: "Conector de e-mail preparado; falta contrato e credencial Responsys." },
+      { id: 21, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "WhatsApp Business", note: "Conector WhatsApp preparado; falta credencial e aprovação de templates." },
+      { id: 22, module: "Newsletter", phase: "V2", status: "Concluído", feature: "Cadastro e preferências de comunicação", note: "Já disponível — canais + frequência + categorias." },
+      { id: 23, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "Digest semanal automático", note: "Agendamento preparado; falta credencial e canal de envio ativo." },
+      { id: 24, module: "Resumo IA", phase: "V2", status: "Concluído", feature: "Widget 'Resumo da Semana' + chat IA", note: "Já disponível — widget e chat inline com inteligência artificial." },
+      { id: 25, module: "Resumo IA", phase: "V2", status: "Em andamento", feature: "Agente de sumarização (backend)", note: "Base de IA preparada; falta credencial de inteligência artificial para ativação." },
+      { id: 26, module: "Resumo IA", phase: "V2", status: "Em andamento", feature: "Job agendado + moderação editorial", note: "Revisão em /admin/resumo-ia; depende de agendamento automático e credencial de IA." },
       { id: 27, module: "Resumo IA", phase: "V3", status: "Em andamento", feature: "Busca semântica e alertas proativos", note: "Flag SEMANTIC_SEARCH presente; alertas proativos não implementados." },
       { id: 28, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Seletor de produtos Oracle para kits", note: "4 kits com produtos reais; transacional depende de credencial Oracle." },
       { id: 29, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Configuração de cupom", note: "Estrutura pronta; mecânica fina + parceria e-commerce pendente." },
       { id: 30, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Publicação do kit com cupom único", note: "RedeemButton pronto; unicidade real depende do e-commerce." },
-      { id: 31, module: "Vitrine", phase: "V2", status: "Concluído", feature: "Cards de kits em Benefícios", note: "Antecipado — KitCard/FeaturedKit na Vitrine." },
+      { id: 31, module: "Vitrine", phase: "V2", status: "Concluído", feature: "Cards de kits em Benefícios", note: "Já disponível — KitCard/FeaturedKit na Vitrine." },
       { id: 32, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Kit em destaque (pop-up/banner)", note: "Reaproveita o mecanismo de destaque da Fase 1." },
-      { id: 33, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Push notification de novo kit", note: "Web Push (VAPID) + opt-in prontos; falta VAPID_* + feature flag." },
+      { id: 33, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Push notification de novo kit", note: "Notificação web preparada; falta credencial e ativação final." },
       { id: 34, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "E-mail de kit para colaboradores", note: "Depende do Responsys (#20)." },
-      { id: 35, module: "Vitrine", phase: "V2", status: "Concluído", feature: "Relatório de resgates e validade", note: "Antecipado — /admin/kits/relatorio." },
-      { id: 36, module: "Engajamento", phase: "V2", status: "Concluído", feature: "Comentários em notícias", note: "Antecipado — CommentsSection." },
-      { id: 37, module: "Comunicação", phase: "V2", status: "Concluído", feature: "Notificações in-app com read-tracking", note: "Antecipado — sino + read-tracking + /admin/notificacoes." },
+      { id: 35, module: "Vitrine", phase: "V2", status: "Concluído", feature: "Relatório de resgates e validade", note: "Já disponível — /admin/kits/relatorio." },
+      { id: 36, module: "Engajamento", phase: "V2", status: "Concluído", feature: "Comentários em notícias", note: "Já disponível — CommentsSection." },
+      { id: 37, module: "Comunicação", phase: "V2", status: "Concluído", feature: "Notificações in-app com confirmação de leitura", note: "Já disponível — sino de notificações com controle de leitura no painel administrativo." },
       { id: 38, module: "Comunicação", phase: "V2", status: "Em andamento", feature: "Comunicados segmentados por depto", note: "Audiência ALL/área pronta; segmentação fina depende de Protheus." },
-      { id: 39, module: "RH", phase: "V2", status: "Em andamento", feature: "Protheus/RH ou import planilha", note: "Import CSV ok (fallback); adapter Protheus depende de credencial." },
+      { id: 39, module: "RH", phase: "V2", status: "Em andamento", feature: "Protheus/RH ou import planilha", note: "Importação por planilha disponível; integração Protheus depende de credencial." },
       { id: 40, module: "RH", phase: "V2", status: "Concluído", feature: "Treinamentos, benefícios e férias", note: "Treinamentos + Benefícios prontos; férias atrás de flag (aguarda RH)." },
       { id: 41, module: "Produto", phase: "V2", status: "A iniciar", feature: "Versão Jandira simplificada", note: "Fase 2; unidade existe no modelo, adaptação não iniciada." },
-      { id: 42, module: "Engajamento", phase: "V3", status: "Concluído", feature: "Mapa interativo + avatar + check-in", note: "Antecipado — /mapa de presença (FEATURE_MAPA)." },
-      { id: 43, module: "Engajamento", phase: "V3", status: "Concluído", feature: "Chat interno (DMs, grupos, presença)", note: "Antecipado — ChatApp + canal Geral (FEATURE_CHAT)." },
-      { id: 44, module: "Resumo IA", phase: "V3", status: "Concluído", feature: "Assistente IA corporativo 'Lina'", note: "Antecipado — assistente flutuante; real com LLM key." },
-      { id: 45, module: "Fundação", phase: "V3", status: "Concluído", feature: "Design System 'System B' (roxo)", note: "Antecipado — paleta disponível; default mantém rosa Salon." },
-      { id: 46, module: "Fundação", phase: "V3", status: "Concluído", feature: "Dark mode", note: "Antecipado — claro/escuro/sistema." },
-      { id: 47, module: "RH", phase: "Descartado", status: "Descartado", feature: "Relógio de ponto nativo", note: "Fora do MVP — ponto vem do Protheus; aqui é atalho de link." },
-      { id: 48, module: "Comunicação", phase: "Descartado", status: "Descartado", feature: "Ouvidoria", note: "Fora do MVP — 'não é prática da Salon Line'." },
-      { id: 49, module: "Integrações", phase: "Descartado", status: "Descartado", feature: "Stubs de integração (UI sem backend)", note: "Substituído por adapters reais (env-gated), não UI-fake." },
-      { id: 50, module: "Fundação", phase: "Descartado", status: "Descartado", feature: "Persistência em localStorage", note: "Substituído por Neon/Postgres — tudo no banco." },
+      { id: 42, module: "Engajamento", phase: "V3", status: "Concluído", feature: "Mapa interativo + avatar + check-in", note: "Já disponível — mapa de presença no escritório." },
+      { id: 43, module: "Engajamento", phase: "V3", status: "Concluído", feature: "Chat interno (DMs, grupos, presença)", note: "Já disponível — mensagens diretas, grupos e canal geral." },
+      { id: 44, module: "Resumo IA", phase: "V3", status: "Concluído", feature: "Assistente IA corporativo 'Lina'", note: "Já disponível — assistente flutuante com inteligência artificial." },
+      { id: 45, module: "Fundação", phase: "V3", status: "Concluído", feature: "Design System 'System B' (roxo)", note: "Já disponível — paleta disponível; default mantém rosa Salon." },
+      { id: 46, module: "Fundação", phase: "V3", status: "Concluído", feature: "Dark mode", note: "Já disponível — claro/escuro/sistema." },
+      { id: 47, module: "RH", phase: "Em análise", status: "Em análise", feature: "Relógio de ponto nativo", note: "Em análise — ponto vem do Protheus; na intranet fica como atalho." },
+      { id: 48, module: "Comunicação", phase: "Em análise", status: "Em análise", feature: "Ouvidoria", note: "Em análise — não faz parte da prática atual da Salon Line." },
+      { id: 49, module: "Integrações", phase: "Em análise", status: "Em análise", feature: "Integrações simuladas (UI sem backend)", note: "Substituído por conectores reais com ativação por credencial." },
+      { id: 50, module: "Fundação", phase: "Em análise", status: "Em análise", feature: "Persistência em localStorage", note: "Substituído por banco de dados em nuvem — tudo persistido de forma segura." },
       { id: 51, module: "Acontece", phase: "Bônus", status: "Concluído", feature: "Sync automático do blog (WordPress → Acontece)", note: "Cron horário; 40 posts sincronizados sob tag exclusiva 'Blog'." },
       { id: 52, module: "Engajamento", phase: "Bônus", status: "A iniciar", feature: "Clarity (analytics)", note: "Novo item — mapear navegação/engajamento + mapa de acessos." },
     ];
@@ -879,6 +971,7 @@
       if (status === "Concluído") return "done";
       if (status === "Em andamento") return "partial";
       if (status === "A iniciar") return "open";
+      if (status === "Em análise") return "plan";
       return "plan";
     }
 
@@ -902,6 +995,63 @@
     statusFilter.addEventListener("change", renderBacklog);
     renderMilestone();
     renderBacklog();
+
+    function statusClassExport(status) {
+      return statusClass(status);
+    }
+
+    function renderItemCard(item) {
+      return `
+        <article class="item-card">
+          <div class="item-top">
+            <b>#${item.id} · ${item.module}<br>${item.feature}</b>
+            <span class="badge ${statusClassExport(item.status)}">${item.status}</span>
+          </div>
+          <p><b>${item.phase}</b> · ${item.note}</p>
+        </article>
+      `;
+    }
+
+    function activateExportMode() {
+      document.body.classList.add("export-pdf");
+      document.title = "Projeto Intranet Salon Line | Apresentação";
+
+      const nav = document.querySelector(".nav");
+      if (nav) nav.remove();
+
+      const allDetails = document.createElement("div");
+      allDetails.className = "milestone-all-details";
+      allDetails.innerHTML = milestones.map((item) => `
+        <div class="detail-card">
+          <h3>${item.date} · ${item.label} · ${item.title}</h3>
+          <p>${item.detail}</p>
+        </div>
+      `).join("");
+      detail.insertAdjacentElement("afterend", allDetails);
+
+      const backlogTitle = document.querySelector("#backlog .title-block");
+      backlogTitle.querySelector("h2").textContent = "Matriz de funcionalidades do projeto";
+      backlogTitle.querySelector("p").textContent = "Detalhamento dos 52 itens mapeados, com fase e status atual de cada entrega.";
+
+      phaseFilter.value = "all";
+      statusFilter.value = "all";
+      visibleCount.textContent = backlog.length;
+      grid.innerHTML = backlog.map(renderItemCard).join("");
+
+      document.querySelectorAll(".panel").forEach((panel) => {
+        const label = document.createElement("div");
+        label.className = "export-section-label";
+        label.textContent = panel.id === "overview" ? "Visão geral"
+          : panel.id === "timeline" ? "Timeline"
+          : panel.id === "phase2" ? "Fase 2"
+          : "Matriz de funcionalidades";
+        panel.insertBefore(label, panel.firstChild);
+      });
+    }
+
+    if (new URLSearchParams(window.location.search).get("export") === "pdf") {
+      activateExportMode();
+    }
   </script>
 </body>
 </html>

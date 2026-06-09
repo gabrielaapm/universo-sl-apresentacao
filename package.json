@@ -1,0 +1,8 @@
+{
+  "name": "universo-sl-apresentacao",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pdf": "node scripts/gerar-pdf.mjs"
+  }
+}
