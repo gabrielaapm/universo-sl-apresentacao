@@ -277,7 +277,7 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
-      background: conic-gradient(var(--green) 0 56%, var(--amber) 56% 87%, var(--red) 87% 90%, #d9d2d7 90% 100%);
+      background: conic-gradient(var(--green) 0 60%, var(--amber) 60% 90%, var(--red) 90% 94%, #d9d2d7 94% 100%);
       box-shadow: inset 0 0 0 18px rgba(255,255,255,0.8);
     }
 
@@ -743,14 +743,14 @@
           <div class="topbar">
             <div class="title-block">
               <h2>O projeto evoluiu com solidez; agora entramos na etapa de fechamento e validação.</h2>
-              <p>O protótipo inicial tinha cerca de 10 funcionalidades. A matriz atual reúne 52 itens, com 29 já em produção. Até 18/06, o foco é disponibilizar a plataforma para os testes com o cliente.</p>
+              <p>O protótipo inicial tinha cerca de 10 funcionalidades. A matriz atual reúne 52 itens, com 31 já entregues. Tudo está na Fase 1, exceto a Unidade Jandira e a integração Protheus/RH (Fase 2). Até 18/06, o foco é disponibilizar a plataforma para os testes com o cliente.</p>
             </div>
             <div class="status-pill">Dentro do prazo</div>
           </div>
 
           <div class="kpis">
             <div class="card kpi"><span class="value">52</span><span class="label">itens mapeados na matriz</span></div>
-            <div class="card kpi"><span class="value">29</span><span class="label">já em produção</span></div>
+            <div class="card kpi"><span class="value">31</span><span class="label">itens entregues</span></div>
             <div class="card kpi"><span class="value">18/06</span><span class="label">Testes cliente</span></div>
             <div class="card kpi"><span class="value">21/06</span><span class="label">Go-live</span></div>
           </div>
@@ -759,12 +759,12 @@
             <div class="card big-card">
               <h3>Leitura executiva da matriz</h3>
               <div class="progress-wrap">
-                <div class="donut"><span>56%</span></div>
+                <div class="donut"><span>60%</span></div>
                 <div class="legend">
-                  <div class="legend-item"><i class="dot green"></i><span>Feito em produção</span><b>29 itens</b></div>
-                  <div class="legend-item"><i class="dot amber"></i><span>Parcial por credencial/integração</span><b>16 itens</b></div>
-                  <div class="legend-item"><i class="dot red"></i><span>Em aberto / a iniciar</span><b>2 itens</b></div>
-                  <div class="legend-item"><i class="dot gray"></i><span>Em análise ou substituído de forma controlada</span><b>5 itens</b></div>
+                  <div class="legend-item"><i class="dot green"></i><span>Entregue</span><b>31 itens</b></div>
+                  <div class="legend-item"><i class="dot amber"></i><span>Parcial — aguarda credencial</span><b>16 itens</b></div>
+                  <div class="legend-item"><i class="dot red"></i><span>A iniciar (Clarity e Jandira)</span><b>2 itens</b></div>
+                  <div class="legend-item"><i class="dot gray"></i><span>Em análise</span><b>3 itens</b></div>
                 </div>
               </div>
             </div>
@@ -773,7 +773,7 @@
               <h3>O que precisa ficar visível</h3>
               <div class="focus-list">
                 <div class="focus-item"><div class="focus-index">1</div><div><b>Prazo batendo</b><span>O plano mostra Agenda com Negócio, Início do Desenvolvimento, Liberação para testes e Go-live nos marcos corretos.</span></div></div>
-                <div class="focus-item"><div class="focus-index">2</div><div><b>Evolução do escopo</b><span>Partimos de um protótipo de referência para uma plataforma com banco de dados, armazenamento, autenticação, CMS, dados reais e 29 entregas em produção.</span></div></div>
+                <div class="focus-item"><div class="focus-index">2</div><div><b>Evolução do escopo</b><span>Partimos de um protótipo de referência para uma plataforma com banco de dados, armazenamento, autenticação, CMS, dados reais e 31 itens entregues.</span></div></div>
                 <div class="focus-item"><div class="focus-index">3</div><div><b>Fase 2 definida</b><span>Após o go-live, a evolução prevista concentra-se em Jandira e integração Protheus (RH).</span></div></div>
               </div>
             </div>
@@ -845,12 +845,7 @@
             <select id="phaseFilter" aria-label="Filtrar por fase">
               <option value="all">Todas as fases</option>
               <option value="Fase 1">Fase 1</option>
-              <option value="V1.1">V1.1</option>
-              <option value="V2">V2</option>
-              <option value="V3">V3</option>
-              <option value="Bônus">Bônus</option>
               <option value="Fase 2">Fase 2</option>
-              <option value="Em análise">Em análise</option>
             </select>
             <select id="statusFilter" aria-label="Filtrar por status">
               <option value="all">Todos os status</option>
@@ -875,58 +870,58 @@
     ];
 
     const backlog = [
-      { id: 1, module: "Fundação", phase: "Fase 1", status: "Concluído", feature: "Banco de dados e storage", note: "Neon em produção + R2 provisionado; upload de mídia e imagens reais funcionando." },
-      { id: 2, module: "Fundação", phase: "Fase 1", status: "Em análise", feature: "Acesso sem login restrito à rede", note: "Em avaliação: substituído por login obrigatório — decisão de arquitetura." },
-      { id: 3, module: "Fundação", phase: "Fase 1", status: "Concluído", feature: "Feature flags e health endpoints", note: "13 feature flags + endpoints /api/health/*." },
-      { id: 4, module: "Fundação", phase: "Fase 1", status: "Concluído", feature: "Testes E2E e responsividade", note: "Testes automatizados ponta a ponta + 101 testes + integração contínua; responsivo a partir de 375px." },
-      { id: 5, module: "Autenticação", phase: "Fase 1", status: "Em andamento", feature: "Login admin Google SSO + RBAC", note: "RBAC em produção; Google SSO depende de credencial OAuth do cliente." },
-      { id: 6, module: "Autenticação", phase: "Fase 1", status: "Concluído", feature: "Gestão de usuários administradores", note: "/admin/usuarios — CRUD completo." },
-      { id: 7, module: "Home", phase: "Fase 1", status: "Concluído", feature: "Carrossel de banners + slots posicionáveis", note: "Hero + blocos (slots 1–6) + admin, com imagens reais." },
-      { id: 8, module: "Home", phase: "Fase 1", status: "Concluído", feature: "Agenda, aniversariantes e últimas notícias", note: "Mural + aniversariantes (CSV) + últimas matérias." },
-      { id: 9, module: "Home", phase: "Fase 1", status: "Concluído", feature: "Atalhos por área e TV Salon Line", note: "Links úteis por área + embed Pluto.tv." },
-      { id: 10, module: "Acontece", phase: "Fase 1", status: "Concluído", feature: "Lista, filtro e detalhe de notícias", note: "Filtro por categoria + detalhe Markdown; posts com imagem real." },
-      { id: 11, module: "Acontece", phase: "Fase 1", status: "Concluído", feature: "URL compartilhável e like por matéria", note: "/acontece/[slug] + copiar link + like idempotente." },
-      { id: 12, module: "Acontece", phase: "Fase 1", status: "Concluído", feature: "Pop-up de destaque ao entrar", note: "Modal 1×/sessão configurável em /admin/destaque." },
-      { id: 13, module: "Pessoas", phase: "Fase 1", status: "Concluído", feature: "Nosso Time — diretório e perfil", note: "29 colaboradores reais (LinkedIn), 26 com foto no R2; busca por nome." },
-      { id: 14, module: "Vagas", phase: "Fase 1", status: "Concluído", feature: "Vagas internas com link Solides", note: "/vagas + admin + 12 vagas + link Solides." },
-      { id: 15, module: "CMS", phase: "Fase 1", status: "Concluído", feature: "CMS — banners, notícias, agenda e vagas", note: "CRUD completo + ocultar sem deletar + upload R2." },
-      { id: 16, module: "CMS", phase: "Fase 1", status: "Concluído", feature: "CMS — atalhos, aniversariantes (CSV) e pop-up", note: "Import CSV + atalhos por área + config do pop-up." },
-      { id: 17, module: "Descoberta", phase: "V1.1", status: "Concluído", feature: "Busca global multi-entidade", note: "Já disponível — header + /busca segmentado (matéria/pessoa/atalho/vaga)." },
-      { id: 18, module: "Pessoas", phase: "V1.1", status: "Concluído", feature: "Widget de novos colaboradores", note: "Já disponível — destaque de novos colaboradores na Home." },
-      { id: 19, module: "Acontece", phase: "V1.1", status: "Em andamento", feature: "Segmentação de conteúdo por área", note: "Filtro por categoria ok; por área do colaborador depende de Protheus." },
-      { id: 20, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "E-mail transacional (Responsys)", note: "Conector de e-mail preparado; falta contrato e credencial Responsys." },
-      { id: 21, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "WhatsApp Business", note: "Conector WhatsApp preparado; falta credencial e aprovação de templates." },
-      { id: 22, module: "Newsletter", phase: "V2", status: "Concluído", feature: "Cadastro e preferências de comunicação", note: "Já disponível — canais + frequência + categorias." },
-      { id: 23, module: "Newsletter", phase: "V2", status: "Em andamento", feature: "Digest semanal automático", note: "Agendamento preparado; falta credencial e canal de envio ativo." },
-      { id: 24, module: "Resumo IA", phase: "V2", status: "Concluído", feature: "Widget 'Resumo da Semana' + chat IA", note: "Já disponível — widget e chat inline com inteligência artificial." },
-      { id: 25, module: "Resumo IA", phase: "V2", status: "Em andamento", feature: "Agente de sumarização (backend)", note: "Base de IA preparada; falta credencial de inteligência artificial para ativação." },
-      { id: 26, module: "Resumo IA", phase: "V2", status: "Em andamento", feature: "Job agendado + moderação editorial", note: "Revisão em /admin/resumo-ia; depende de agendamento automático e credencial de IA." },
-      { id: 27, module: "Resumo IA", phase: "V3", status: "Em andamento", feature: "Busca semântica e alertas proativos", note: "Flag SEMANTIC_SEARCH presente; alertas proativos não implementados." },
-      { id: 28, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Seletor de produtos Oracle para kits", note: "4 kits com produtos reais; transacional depende de credencial Oracle." },
-      { id: 29, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Configuração de cupom", note: "Estrutura pronta; mecânica fina + parceria e-commerce pendente." },
-      { id: 30, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Publicação do kit com cupom único", note: "RedeemButton pronto; unicidade real depende do e-commerce." },
-      { id: 31, module: "Vitrine", phase: "V2", status: "Concluído", feature: "Cards de kits em Benefícios", note: "Já disponível — KitCard/FeaturedKit na Vitrine." },
-      { id: 32, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Kit em destaque (pop-up/banner)", note: "Reaproveita o mecanismo de destaque da Fase 1." },
-      { id: 33, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "Push notification de novo kit", note: "Notificação web preparada; falta credencial e ativação final." },
-      { id: 34, module: "Vitrine", phase: "V2", status: "Em andamento", feature: "E-mail de kit para colaboradores", note: "Depende do Responsys (#20)." },
-      { id: 35, module: "Vitrine", phase: "V2", status: "Concluído", feature: "Relatório de resgates e validade", note: "Já disponível — /admin/kits/relatorio." },
-      { id: 36, module: "Engajamento", phase: "V2", status: "Concluído", feature: "Comentários em notícias", note: "Já disponível — CommentsSection." },
-      { id: 37, module: "Comunicação", phase: "V2", status: "Concluído", feature: "Notificações in-app com confirmação de leitura", note: "Já disponível — sino de notificações com controle de leitura no painel administrativo." },
-      { id: 38, module: "Comunicação", phase: "V2", status: "Em andamento", feature: "Comunicados segmentados por depto", note: "Audiência ALL/área pronta; segmentação fina depende de Protheus." },
-      { id: 39, module: "RH", phase: "Fase 2", status: "Em andamento", feature: "Protheus/RH ou import planilha", note: "Fase 2 do projeto; importação por planilha disponível; integração Protheus depende de credencial." },
-      { id: 40, module: "RH", phase: "V2", status: "Concluído", feature: "Treinamentos, benefícios e férias", note: "Treinamentos + Benefícios prontos; férias atrás de flag (aguarda RH)." },
-      { id: 41, module: "Produto", phase: "Fase 2", status: "A iniciar", feature: "Versão Jandira simplificada", note: "Fase 2 do projeto; unidade existe no modelo, adaptação não iniciada." },
-      { id: 42, module: "Engajamento", phase: "V3", status: "Concluído", feature: "Mapa interativo + avatar + check-in", note: "Já disponível — mapa de presença no escritório." },
-      { id: 43, module: "Engajamento", phase: "V3", status: "Concluído", feature: "Chat interno (DMs, grupos, presença)", note: "Já disponível — mensagens diretas, grupos e canal geral." },
-      { id: 44, module: "Resumo IA", phase: "V3", status: "Concluído", feature: "Assistente IA corporativo 'Lina'", note: "Já disponível — assistente flutuante com inteligência artificial." },
-      { id: 45, module: "Fundação", phase: "V3", status: "Concluído", feature: "Design System 'System B' (roxo)", note: "Já disponível — paleta disponível; default mantém rosa Salon." },
-      { id: 46, module: "Fundação", phase: "V3", status: "Concluído", feature: "Dark mode", note: "Já disponível — claro/escuro/sistema." },
-      { id: 47, module: "RH", phase: "Em análise", status: "Em análise", feature: "Relógio de ponto nativo", note: "Em análise — ponto vem do Protheus; na intranet fica como atalho." },
-      { id: 48, module: "Comunicação", phase: "Em análise", status: "Em análise", feature: "Ouvidoria", note: "Em análise — não faz parte da prática atual da Salon Line." },
-      { id: 49, module: "Integrações", phase: "Em análise", status: "Em análise", feature: "Integrações simuladas (UI sem backend)", note: "Substituído por conectores reais com ativação por credencial." },
-      { id: 50, module: "Fundação", phase: "Em análise", status: "Em análise", feature: "Persistência em localStorage", note: "Substituído por banco de dados em nuvem — tudo persistido de forma segura." },
-      { id: 51, module: "Acontece", phase: "Bônus", status: "Concluído", feature: "Sync automático do blog (WordPress → Acontece)", note: "Cron horário; 40 posts sincronizados sob tag exclusiva 'Blog'." },
-      { id: 52, module: "Engajamento", phase: "Bônus", status: "A iniciar", feature: "Clarity (analytics)", note: "Novo item — mapear navegação/engajamento + mapa de acessos." },
+      { id: 1, module: "Conteúdo & Institucional", phase: "Fase 1", status: "Concluído", feature: "Carrossel de banners + slots editáveis", note: "Banner principal + blocos posicionáveis + admin, com imagens reais." },
+      { id: 2, module: "Conteúdo & Institucional", phase: "Fase 1", status: "Concluído", feature: "Agenda, aniversariantes e últimas notícias", note: "Mural + aniversariantes (CSV) + últimas matérias." },
+      { id: 3, module: "Conteúdo & Institucional", phase: "Fase 1", status: "Concluído", feature: "Atalhos por área + TV Salon Line", note: "Links úteis por área + canal de TV embutido." },
+      { id: 4, module: "Conteúdo & Institucional", phase: "Fase 1", status: "Concluído", feature: "Notícias: lista, filtro e detalhe", note: "Filtro por categoria + página de detalhe; posts com imagem real." },
+      { id: 5, module: "Conteúdo & Institucional", phase: "Fase 1", status: "Concluído", feature: "Pop-up de destaque ao entrar", note: "Modal configurável (imagem, link e período) no painel." },
+      { id: 6, module: "Conteúdo & Institucional", phase: "Fase 1", status: "Concluído", feature: "Nosso Time — diretório e perfil", note: "29 colaboradores reais; busca por nome; fotos hospedadas." },
+      { id: 7, module: "Conteúdo & Institucional", phase: "Fase 1", status: "Concluído", feature: "Vagas internas + link Solides", note: "Página + admin + 12 vagas + candidatura via Solides." },
+      { id: 8, module: "Conteúdo & Institucional", phase: "Fase 1", status: "Concluído", feature: "Sync automática do blog (WordPress)", note: "Sincronização horária; 40 posts sob a tag exclusiva 'Blog'." },
+      { id: 9, module: "Controle & Gestão (CMS)", phase: "Fase 1", status: "Em andamento", feature: "Login admin Google SSO + RBAC", note: "Perfis de acesso em produção; Google SSO depende de credencial do cliente." },
+      { id: 10, module: "Controle & Gestão (CMS)", phase: "Fase 1", status: "Concluído", feature: "Gestão de usuários administradores", note: "CRUD completo de administradores." },
+      { id: 11, module: "Controle & Gestão (CMS)", phase: "Fase 1", status: "Concluído", feature: "CMS — banners, notícias, agenda, vagas", note: "CRUD completo + ocultar sem deletar + upload de mídia." },
+      { id: 12, module: "Controle & Gestão (CMS)", phase: "Fase 1", status: "Concluído", feature: "CMS — atalhos, aniversariantes (CSV), pop-up", note: "Import CSV + atalhos por área + configuração do pop-up." },
+      { id: 13, module: "Inteligência Artificial", phase: "Fase 1", status: "Concluído", feature: "Widget 'Resumo da Semana' + chat IA", note: "Já disponível — widget e chat inline com inteligência artificial." },
+      { id: 14, module: "Inteligência Artificial", phase: "Fase 1", status: "Em andamento", feature: "Agente IA de sumarização (RAG)", note: "Base de IA preparada; falta credencial de inteligência artificial." },
+      { id: 15, module: "Inteligência Artificial", phase: "Fase 1", status: "Em andamento", feature: "Job agendado + moderação editorial", note: "Revisão editorial pronta; depende de agendamento e credencial de IA." },
+      { id: 16, module: "Inteligência Artificial", phase: "Fase 1", status: "Em andamento", feature: "Busca semântica + alertas proativos", note: "Busca semântica preparada; alertas proativos a implementar." },
+      { id: 17, module: "Inteligência Artificial", phase: "Fase 1", status: "Concluído", feature: "Assistente IA corporativo 'Lina'", note: "Já disponível — assistente flutuante com inteligência artificial." },
+      { id: 18, module: "Engajamento", phase: "Fase 1", status: "Concluído", feature: "URL compartilhável + like por matéria", note: "Link por matéria + copiar + curtida idempotente." },
+      { id: 19, module: "Engajamento", phase: "Fase 1", status: "Concluído", feature: "Busca global multi-entidade", note: "Busca no topo + página segmentada (matéria/pessoa/atalho/vaga)." },
+      { id: 20, module: "Engajamento", phase: "Fase 1", status: "Concluído", feature: "Widget de novos colaboradores", note: "Destaque de novos colaboradores na Home." },
+      { id: 21, module: "Engajamento", phase: "Fase 1", status: "Em andamento", feature: "Segmentação de conteúdo por área", note: "Filtro por categoria ok; por área do colaborador depende de Protheus." },
+      { id: 22, module: "Engajamento", phase: "Fase 1", status: "Concluído", feature: "Comentários em notícias", note: "Já disponível — comentários nas matérias." },
+      { id: 23, module: "Engajamento", phase: "Fase 1", status: "Concluído", feature: "Mapa interativo + presença + check-in", note: "Já disponível — mapa de presença no escritório." },
+      { id: 24, module: "Engajamento", phase: "Fase 1", status: "Concluído", feature: "Chat interno (DMs, grupos, presença)", note: "Já disponível — mensagens diretas, grupos e canal geral." },
+      { id: 25, module: "Engajamento", phase: "Fase 1", status: "A iniciar", feature: "Microsoft Clarity (analytics de engajamento)", note: "Monitoramento de navegação e engajamento do usuário; ainda a iniciar." },
+      { id: 26, module: "Comunicação & Notificações", phase: "Fase 1", status: "Em andamento", feature: "Newsletter e-mail transacional (Responsys)", note: "Conector de e-mail preparado; falta contrato e credencial Responsys." },
+      { id: 27, module: "Comunicação & Notificações", phase: "Fase 1", status: "Em andamento", feature: "WhatsApp Business (disparo + opt-in)", note: "Conector WhatsApp preparado; falta credencial e aprovação de templates." },
+      { id: 28, module: "Comunicação & Notificações", phase: "Fase 1", status: "Concluído", feature: "Preferências de comunicação (canais/freq.)", note: "Já disponível — canais + frequência + categorias." },
+      { id: 29, module: "Comunicação & Notificações", phase: "Fase 1", status: "Em andamento", feature: "Digest semanal automático", note: "Agendamento preparado; falta credencial e canal de envio ativo." },
+      { id: 30, module: "Comunicação & Notificações", phase: "Fase 1", status: "Em andamento", feature: "Push notification (web)", note: "Notificação web preparada; falta credencial e ativação final." },
+      { id: 31, module: "Comunicação & Notificações", phase: "Fase 1", status: "Concluído", feature: "Notificações in-app com confirmação de leitura", note: "Já disponível — sino de notificações com controle de leitura no painel." },
+      { id: 32, module: "Comunicação & Notificações", phase: "Fase 1", status: "Em andamento", feature: "Comunicados segmentados por depto", note: "Audiência geral/por área pronta; segmentação fina depende de Protheus." },
+      { id: 33, module: "Comunicação & Notificações", phase: "Fase 1", status: "Em análise", feature: "Ouvidoria", note: "Em análise — a decidir com o negócio." },
+      { id: 34, module: "Comércio, Benefícios & RH", phase: "Fase 1", status: "Em andamento", feature: "Seletor de produtos Oracle p/ kits", note: "4 kits com produtos reais; transacional depende de credencial Oracle." },
+      { id: 35, module: "Comércio, Benefícios & RH", phase: "Fase 1", status: "Em andamento", feature: "Configuração de cupom (mecânica/datas)", note: "Estrutura pronta; mecânica fina + parceria de e-commerce pendente." },
+      { id: 36, module: "Comércio, Benefícios & RH", phase: "Fase 1", status: "Em andamento", feature: "Publicação de kit com cupom único", note: "Resgate pronto; unicidade real depende do e-commerce." },
+      { id: 37, module: "Comércio, Benefícios & RH", phase: "Fase 1", status: "Concluído", feature: "Cards de kits em Benefícios", note: "Já disponível — cards de kit na Vitrine." },
+      { id: 38, module: "Comércio, Benefícios & RH", phase: "Fase 1", status: "Em andamento", feature: "Kit em destaque (pop-up/banner)", note: "Reaproveita o mecanismo de destaque da Fase 1." },
+      { id: 39, module: "Comércio, Benefícios & RH", phase: "Fase 1", status: "Em andamento", feature: "E-mail de kit p/ colaboradores", note: "Depende do conector de e-mail (Responsys)." },
+      { id: 40, module: "Comércio, Benefícios & RH", phase: "Fase 1", status: "Concluído", feature: "Relatório de resgates e validade", note: "Já disponível — relatório de resgates no painel." },
+      { id: 41, module: "Comércio, Benefícios & RH", phase: "Fase 2", status: "Em andamento", feature: "Integração Protheus/RH (ou CSV)", note: "Fase 2 do projeto; importação por planilha disponível; conector Protheus depende de credencial." },
+      { id: 42, module: "Comércio, Benefícios & RH", phase: "Fase 1", status: "Concluído", feature: "Treinamentos, benefícios e férias", note: "Treinamentos + Benefícios prontos; férias aguardando liberação do RH." },
+      { id: 43, module: "Comércio, Benefícios & RH", phase: "Fase 1", status: "Em análise", feature: "Relógio de ponto (atalho)", note: "Em análise — ponto vem do Protheus; na intranet ficaria como atalho." },
+      { id: 44, module: "Fundação & Infra", phase: "Fase 1", status: "Concluído", feature: "Banco (Postgres/Neon) + Storage R2", note: "Banco em nuvem + armazenamento de mídia funcionando." },
+      { id: 45, module: "Fundação & Infra", phase: "Fase 1", status: "Em análise", feature: "Acesso sem login na rede (Zero Trust)", note: "Em análise — hoje o acesso é por login obrigatório." },
+      { id: 46, module: "Fundação & Infra", phase: "Fase 1", status: "Concluído", feature: "Feature flags + health endpoints", note: "Liga/desliga de módulos + verificações de saúde." },
+      { id: 47, module: "Fundação & Infra", phase: "Fase 1", status: "Concluído", feature: "Testes E2E + CI (Playwright)", note: "Testes automatizados ponta a ponta + 101 testes + integração contínua." },
+      { id: 48, module: "Fundação & Infra", phase: "Fase 2", status: "A iniciar", feature: "Versão Jandira (multi-unidade)", note: "Fase 2 do projeto; unidade existe no modelo, adaptação não iniciada." },
+      { id: 49, module: "Fundação & Infra", phase: "Fase 1", status: "Concluído", feature: "Design System 'System B'", note: "Já disponível — paleta alternativa; default mantém o rosa Salon." },
+      { id: 50, module: "Fundação & Infra", phase: "Fase 1", status: "Concluído", feature: "Dark mode (claro/escuro/sistema)", note: "Já disponível — temas claro, escuro e do sistema." },
+      { id: 51, module: "Fundação & Infra", phase: "Fase 1", status: "Concluído", feature: "Integrações reais (no lugar de stubs)", note: "Conectores reais com ativação por credencial, no lugar de telas simuladas." },
+      { id: 52, module: "Fundação & Infra", phase: "Fase 1", status: "Concluído", feature: "Banco real Postgres (no lugar de localStorage)", note: "Tudo persistido em banco de dados em nuvem, de forma segura." },
     ];
 
     const panels = document.querySelectorAll(".panel");
