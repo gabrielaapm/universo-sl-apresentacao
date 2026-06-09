@@ -1,13 +1,14 @@
-# Apresentacao Interativa - Universo SL
+# Universo SL — Apresentacao Interativa
 
-Apresentacao interativa do projeto Intranet Universo SL.
+Painel de acompanhamento do projeto de intranet corporativa da Salon Line.
+
+Plataforma no ar: https://intranet-universo-sl.vercel.app
 
 Conteudo principal:
-- status atual da matriz;
-- timeline do ciclo de desenvolvimento;
-- testes com o cliente em 18/06;
-- go-live em 21/06;
-- matriz atualizada com 52 itens;
-- Fase 2 com Jandira, Oracle, Clarity e integracoes.
+- status atual da matriz (52 itens);
+- timeline ate testes (18/06) e go-live (21/06);
+- Fase 2: Jandira e Protheus;
+- integracoes da Fase 1 aguardando credencial;
+- matriz de funcionalidades filtravel.
 
-Arquivo principal: `index.html`. Para gerar PDF completo para o cliente: `npm run pdf`.
+Arquivo principal: `index.html`. PDF para o cliente: `npm run pdf`.
